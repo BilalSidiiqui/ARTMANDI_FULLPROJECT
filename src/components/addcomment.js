@@ -5,19 +5,19 @@ import { useParams } from 'react-router';
 import FOOTER from './footer';
 import userServices from "../Services/UserServices";
 import { render } from '@testing-library/react';
-import Comment from './comment';
-import Bids from './bids';
-import TIMER from './Timer';
-import Timer from './Timer';
+import AddComment from './comment';
 
  function Product() {
 
-const [bid_price,setbid]=React.useState();
-const [comment,setcomment]=React.useState();
+const [bid,setbid]=React.useState();
+const [comment,setcomment]=React.useState([]);
+
 
 
 var {id} = useParams()  
+
 const url=`http://127.0.0.1:8000/Listing/${id}/`;
+
 
 const [product,setproduct] =useState(null);
 let content=null;
@@ -30,6 +30,13 @@ useEffect(()=>{
 }, [url])
 
 
+useEffect(()=>{
+  const listurl=`http://127.0.0.1:8000/Comment/?listing=${id}`;
+  fetch(listurl).then(resp=>resp.json()).
+  then(resp=>setcomment(resp))
+})
+
+
 if(product){
   content=
   <div className="relative pb-10 min-h-screen">
@@ -39,49 +46,28 @@ if(product){
   <h5 class="card-title">TITLE: {product.title}</h5>
   <p class="card-text">DESCRIPTION: {product.description}</p>
   <h6>PRICE: ${product.start_price}</h6>
-  <h6>BID CLOSED AT: {product.end_date}</h6>
-  <Timer id={id}/>
 
   <div className="form-group">
-  
- 
-              <form>
-               <input type="number" className="form-control" style={{width:460,marginBottom:15,marginTop:30}} placeholder="PLACE BID" 
-               value={bid_price} onChange={e=>{
+  <div className="row">
+               <input type="number" className="form-control" style={{width:250,marginLeft:15,marginRight:100}} placeholder="PLACE BID" 
+               value={bid} onChange={e=>{
                         setbid(e.target.value)
                     }}
                     />
-                    <button  type="submit" className="btn btn-primary btn-block"  onClick={e=>{
-                    var user = localStorage.getItem("user_id")
-                    var listing = id
-                    if (bid_price>product.start_price){
-                    userServices.addBid(user,bid_price,listing).then((data)=>{
-                      console.log(bid_price)
+                    <button  type="button" class="btn btn-primary">BID NOW!</button>
 
-                        window.location.href="/BUYER"
-                    })
-                  .catch(err=>{
-                        console.log(err)
-                    alert("adding failed")
-                    } )
-                  }
-                  else{
-                    alert("Bid must be greater than the current price of Product ")
-                  }
-                   
-                }}>Bid Now!</button>
-                </form>
-
-                    
+                    </div> 
                       </div>
-                      <Bids id={id}/>
-                      <br/>
-                      
-                      
 
-  
+<div>
+  <h7>COMMENTS: </h7>
+  {
+    comment.map(item=><div><li>{item.comment}</li></div>)
+  }
+</div>
+
                    <form>
-                    <div className="form-group" >
+                    <div className="form-group">
             <textarea class="form-control" rows="5" placeholder="COMMENT"  value={comment} onChange={e=>{
                         setcomment(e.target.value)
                     }}></textarea>
@@ -98,9 +84,7 @@ if(product){
                     })
                    
                 }}>SEND</button>
-                <br/>
                  </form>
-              <Comment id={id} />
             </div>
            
             
@@ -111,13 +95,8 @@ if(product){
 }
   return (
     <div className="App"  style={{backgroundColor:"#D3D3D3",paddingTop:50}}>
-       <div className="container"  style={{marginBottom:600}}>
+       <div className="container"  >
      {content}
-     
-     <br/><br/><br/><br/><br/><br/>
-     <br/><br/><br/><br/><br/><br/>
-     
-     
      </div>
      <FOOTER />
   </div>

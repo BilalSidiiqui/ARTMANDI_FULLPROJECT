@@ -1,8 +1,9 @@
 import React from 'react'
-import { Form,FormControl,Button,Card} from 'react-bootstrap';
-import FOOTER from './footer';
-
+import { Form,FormControl,Button,Card,} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Carousel} from 'react-bootstrap';
  class buyer extends React.Component {
 
 
@@ -10,7 +11,10 @@ import { Link } from 'react-router-dom';
     super();
   
     this.state = {
-      products:null }
+      products:[],
+      visible:3, }
+      
+      this.loadmore= this.loadmore.bind(this);
   }
 
 componentDidMount(){
@@ -23,6 +27,11 @@ fetch('http://127.0.0.1:8000/Listing/').then((resp)=> {
 
      }  
       
+     loadmore(){
+       this.setState((previous)=>{
+         return {visible: previous.visible + 9}
+       })
+     }
   render() {
     console.log(this.state.products)
     return (
@@ -33,27 +42,32 @@ fetch('http://127.0.0.1:8000/Listing/').then((resp)=> {
        <Form inline >
       <FormControl type="text" placeholder="Search Products" className="mr-sm-2"  />
       <Button variant="outline-info">Search </Button>
-    </Form>
+      <br/>
+      <br/><br/>    </Form>
        </div>
       
 
-
+       <div className="container">
 <div className="row"style={{margin:30}}>
+
 {
 this.state.products ?
-this.state.products.map((item)=>
+this.state.products.slice(0,this.state.visible).map((item)=>
+
  <div className="col-sm-4">
- <Card style={{ width: '18rem', margin:20 }}>
+ <Card style={{ width:320, margin:10, backgroundColor:'grey',borderRadius:22}}>
  <Link to={`/PRODUCT/${item.id}`}> <Card.Img variant="top" src={item.image} style={{height:200}} /></Link>
-  <Card.Body>2de4n
-  <Card.Title>{item.title}</Card.Title>
-  <Card.Text>{item.description}</Card.Text>
-    <Card.Text>STARTING PRICE : $ {item.start_price}</Card.Text>
+  <Card.Body>
+  <Card.Title > Title : {item.title}</Card.Title>
+  <Card.Text ><text style={{fontWeight:'bold'}}>Description :</text> {item.description}</Card.Text>
+    <Card.Text><text style={{fontWeight:'bold'}}>STARTING PRICE : </text>${item.start_price}</Card.Text>
 
     <Link to={`/PRODUCT/${item.id}`}>   <Button variant="primary" type="submit" className="btn btn-primary btn-block">BUY NOW</Button>
  </Link> </Card.Body>
 </Card>
+
  </div>
+ 
 )
 :
 <h1>api data no found</h1>
@@ -62,14 +76,19 @@ this.state.products.map((item)=>
 </div>
 
 
+<div className='col-md-12'>
+  {this.state.visible < this.state.products.length &&
+  <button type="button"  className="btn btn-sm btn-primary" onClick={this.loadmore}>SHOW MORE</button>
+  }
+</div>
+
  
-     <br/><br/><br/><br/><br/><br/>
-     <br/><br/><br/><br/><br/><br/>
-     <br/><br/><br/><br/><br/><br/>
+     </div>
+  
      
 
      </div>
-     <FOOTER/>
+  
      </div>
     );
     }

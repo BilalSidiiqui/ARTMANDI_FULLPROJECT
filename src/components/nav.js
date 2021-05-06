@@ -5,7 +5,6 @@ import { BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 import userServices from "../Services/UserServices";
 
   const nav = () => {
-    // const isLogged = false
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -14,9 +13,8 @@ import userServices from "../Services/UserServices";
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="mr-auto">
       <Link className="nav-link" to={"/"}>HOME</Link> 
-      <Link className="nav-link" to={"/chatbox"}>MESSAGES</Link> 
      <Link className="nav-link" to={"/Seller"}>BECOME A SELLER</Link> 
-     <Link className="nav-link" to={"/buyer"}>BECOME A BUYER</Link> 
+     <Link className="nav-link" to={"/watchlist"}>WATCHLIST</Link> 
      
     </Nav>
     <Nav>
@@ -24,15 +22,17 @@ import userServices from "../Services/UserServices";
     <Link className="nav-link" to={"/Login"}>LOGIN</Link>
          
       <Link className="nav-link" to={"/signup"}>SIGNUP</Link> 
-      </>:<Button  style={{backgroundColor:'red',color:'white',border:"red" }} onClick={e=>{
+      </>
+      :<div><Button  style={{backgroundColor:'red',color:'white',border:"red" }} onClick={e=>{
             userServices.logout();
             window.location.href="/";
-          }}>Logout {userServices.getLoggedInUser()}</Button>
-      }
-        {/* <Button onClick={e=>{
-              userServices.logout();
-                window.location.href="/login"
-            }}>Logout {userServices.getLoggedInUser()}</Button> */}
+          }}>Logout {userServices.getLoggedInUser()}
+          
+          </Button>
+          <text style={{padding:20,color:'white', fontWeight:'bold'}}>{localStorage.getItem("username")}</text>
+          </div>
+ 
+        }
     </Nav>
   </Navbar.Collapse>
 </Navbar>

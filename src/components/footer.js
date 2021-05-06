@@ -9,8 +9,9 @@ import React from 'react';
    
    
     <div class="col-sm">
+        
             <ul style={{fontWeight:'bold'}}>Categories</ul>
-<ul><a style={{ color: '#7a7d85'}} href="./">Abstract Art</a></ul>
+<ul><a style={{ color: '#7a7d85'}} href="./seller">Abstract Art</a></ul>
 <ul><a style={{ color: '#7a7d85'}} href="./">Landscapes</a></ul>
 <ul> <a style={{ color: '#7a7d85'}} href="./">Surrealism</a></ul>
 <ul> <a style={{ color: '#7a7d85'}} href="./">Cubism</a></ul>
@@ -19,16 +20,18 @@ import React from 'react';
   
     <div class="col-sm">
     <ul style={{fontWeight:'bold'}}>About</ul>
-    <ul> <a  style={{ color: '#7a7d85'}}href="./">Careers</a></ul>
-<ul> <a  style={{ color: '#7a7d85'}}href="./">Privacy Policy</a></ul>
-<ul><a style={{ color: '#7a7d85'}} href="./">Terms of Service</a></ul>
+    <ul> <a  style={{ color: '#7a7d85'}}href="./Career">Careers</a></ul>
+    
+<ul> <a  style={{ color: '#7a7d85'}}href="./policies">Privacy Policy</a></ul>
+<ul><a style={{ color: '#7a7d85'}} href="./termsofservice">Terms of Service</a></ul>
+
     </div>
    
    
     <div class="col-sm">
     <ul style={{fontWeight:'bold'}}>Support</ul>
-<ul><a style={{ color: '#7a7d85'}} href="./">Customer Support</a></ul>
-<ul> <a  style={{ color: '#7a7d85'}}href="./">Trust & Safety</a></ul>
+<ul><a style={{ color: '#7a7d85'}} href="./customersupport">Customer Support</a></ul>
+<ul> <a  style={{ color: '#7a7d85'}}href="./trustsafety">Trust & Safety</a></ul>
     </div>
 
 

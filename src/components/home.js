@@ -2,6 +2,7 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Carousel} from 'react-bootstrap';
 import FOOTER from './footer';
+import BUYER from './buyer';
 
  function home() {
     return (
@@ -51,40 +52,11 @@ import FOOTER from './footer';
    </Carousel>
 
 <br/><br/><br/><br/>
-   <div className="container">
-  <div className="row">
-  <div class="col-sm">
-  <div class="card" >
-  <img src="http://www.hamailartgalleries.com/uploads/art/thumb_01f86747c1df996fcf431cf3bedd4e90.jpg" class="card-img-top" alt="..."/>
-  <div class="card-body">
-  <h5 class="card-title">Card title</h5>
-  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  <a href="#" class="btn btn-primary">Buy Now</a>
-  </div>
-  </div>
-  </div>
-                
-  <div class="col-sm"><div class="card" >
-  <img src="http://www.hamailartgalleries.com/uploads/art/thumb_86091a78199546865f8951100aa273ca.JPG" class="card-img-top" alt="..."/>
-  <div class="card-body">
-  <h5 class="card-title">Card title</h5>
-  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  <a href="#" class="btn btn-primary">Buy Now</a>
-  </div>
-  </div></div>
-
-  <div class="col-sm"><div class="card" >
-  <img src="http://www.hamailartgalleries.com/uploads/art/thumb_b538fc99314f01b5b3cb3c97097825a4.JPG" class="card-img-top" alt="..."/>
-  <div class="card-body">
-  <h5 class="card-title">Card title</h5>
-  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  <a href="#" class="btn btn-primary">Buy Now</a>
-  </div>
-  </div></div>
+   
+  <BUYER/>
 
 
-    </div>
-    </div>
+    
     <br/><br/><br/><br/>
     <FOOTER/>
     </div>

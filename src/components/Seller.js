@@ -11,7 +11,6 @@ function Seller() {
    const[image,setimage]=React.useState();
    const [category,setcategory]=useState("T");
   const[startPrice,setstartPrice]=React.useState();
-  const[created_by,setcreated_by]=React.useState();
 
 
     return (
@@ -44,8 +43,9 @@ function Seller() {
                     }} />
             </div>
 
-            
-               <select className="custom-select" value={category} onChange={(e) =>{
+            <div className="form-group">
+               <select className="custom-select" 
+               value={category} onChange={(e) =>{
                   const selectedCategory=e.target.value;
                   setcategory(selectedCategory)
                }}>
@@ -55,7 +55,7 @@ function Seller() {
                   <option value="T">TOY</option>  
             
                </select>
-               {category}
+               </div>
 
 
 
@@ -64,14 +64,13 @@ function Seller() {
                         setimage(e.target.value)
                     }}/> <br/> <br/>
 
-            {/* <div className="created_by" value={localStorage.getItem("user_id")}>        </div> */}
             
 
 
             <button type="submit" className="btn btn-primary btn-block" onClick={e=>{
                     var created_by = localStorage.getItem("user_id")
                     var start_price= parseInt(startPrice)
-                    userServices.addProduct(title,description,image,category,start_price, created_by).then((data)=>{
+                    userServices.addProduct(title,description,image,category,start_price,created_by).then((data)=>{
                         console.log(data)
                         window.location.href="/BUYER"
                     }).catch(err=>{
