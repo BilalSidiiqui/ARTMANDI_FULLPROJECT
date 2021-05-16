@@ -31,7 +31,7 @@ class UserServices extends GenericServices {
     localStorage.removeItem("user_id", "");
   };
 
-  addProduct = (title, description, image, category, start_price,created_by) =>
+  addProduct = (title, description, image, category, start_price,created_by,end_date) =>
     this.post("/Listing/?format=api", {
       title,
       description,
@@ -39,6 +39,7 @@ class UserServices extends GenericServices {
       category,
       start_price,
       created_by,
+      end_date,
     });
 
   addComment = (user,comment,listing)=>this.post("/Comment/?format=api",{
@@ -47,6 +48,14 @@ class UserServices extends GenericServices {
     listing
   });
   
+  closeBid = (listing)=>this.post("/closebid/",{listing}).then((getinfo)=>{
+    localStorage.setItem("bid",getinfo.bid)
+    localStorage.setItem("user",getinfo.user);
+  })
+  
+  
+  ;
+
 
   addBid = (user,bid_price,listing)=>this.post("/Bid/?format=api",{
     user,

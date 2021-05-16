@@ -3,7 +3,6 @@ import { Form,FormControl,Button,Card,} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Carousel} from 'react-bootstrap';
  class buyer extends React.Component {
 
 
@@ -20,8 +19,10 @@ import {Carousel} from 'react-bootstrap';
 componentDidMount(){
 fetch('http://127.0.0.1:8000/Listing/').then((resp)=> {
   resp.json().then((result) => {
-    // console.warn (result.data)
-    this.setState({products:result})
+    let array=result.filter(e => e.completed===false)
+
+    this.setState({products:array})
+    
   })
 })
 
@@ -32,11 +33,16 @@ fetch('http://127.0.0.1:8000/Listing/').then((resp)=> {
          return {visible: previous.visible + 9}
        })
      }
+
+     
+
   render() {
     console.log(this.state.products)
     return (
+
         <div className="App"  style={{backgroundColor:"#D3D3D3", paddingTop:50}}>
    <div className="container"  >
+      
               <div className='row' >
              <h1 style={{textAlign:'center',marginLeft:320, marginRight:80, color:'	#696969'}}>PRODUCTS</h1>
        <Form inline >

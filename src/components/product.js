@@ -4,10 +4,8 @@ import axios from 'axios';
 import { useParams } from 'react-router';
 import FOOTER from './footer';
 import userServices from "../Services/UserServices";
-import { render } from '@testing-library/react';
 import Comment from './comment';
 import Bids from './bids';
-import TIMER from './Timer';
 import Timer from './Timer';
 
  function Product() {
@@ -29,7 +27,6 @@ useEffect(()=>{
   })
 }, [url])
 
-
 if(product){
   content=
   <div className="relative pb-10 min-h-screen">
@@ -40,10 +37,26 @@ if(product){
   <p class="card-text">DESCRIPTION: {product.description}</p>
   <h6>PRICE: ${product.start_price}</h6>
   <h6>BID CLOSED AT: {product.end_date}</h6>
+  
   <Timer id={id}/>
 
   <div className="form-group">
-  
+
+<button type="submit" className="btn btn-primary btn-block"  onClick={e=>{
+                    var listing = id
+                    userServices.closeBid(listing).then((data)=>{
+                        window.location.href="/BUYER"
+                        console.log(listing)
+                        alert(localStorage.getItem("user"));
+                        alert(localStorage.getItem("bid"))
+
+                    }).catch(err=>{
+                        console.log(err)
+                    alert("closing failed")
+                    })
+                   
+                }}>Close Bid</button>
+ 
  
               <form>
                <input type="number" className="form-control" style={{width:460,marginBottom:15,marginTop:30}} placeholder="PLACE BID" 

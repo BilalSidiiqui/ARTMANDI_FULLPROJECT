@@ -1,7 +1,10 @@
 import React,{useState} from 'react'
 import FOOTER from './footer';
-
+import DatePicker from 'react-date-picker';
+import Calendar from 'react-calendar'
 import userServices from "../Services/UserServices";
+import 'react-datepicker/dist/react-datepicker-cssmodules.min.css'
+import moment from 'moment';
 
 function Seller() {
     console.log(localStorage.getItem("user_id"))
@@ -11,6 +14,8 @@ function Seller() {
    const[image,setimage]=React.useState();
    const [category,setcategory]=useState("T");
   const[startPrice,setstartPrice]=React.useState();
+  const [end_date, setend_date] = useState(new Date());
+  
 
 
     return (
@@ -64,13 +69,17 @@ function Seller() {
                         setimage(e.target.value)
                     }}/> <br/> <br/>
 
-            
+            <Calendar
+                    selected={end_date}               
+                    onChange={date=> setend_date(date)}
+                   
+                    
+                />    
 
-
-            <button type="submit" className="btn btn-primary btn-block" onClick={e=>{
+            <button style={{marginTop:30}} type="submit" className="btn btn-primary btn-block" onClick={e=>{
                     var created_by = localStorage.getItem("user_id")
                     var start_price= parseInt(startPrice)
-                    userServices.addProduct(title,description,image,category,start_price,created_by).then((data)=>{
+                    userServices.addProduct(title,description,image,category,start_price,created_by,end_date).then((data)=>{
                         console.log(data)
                         window.location.href="/BUYER"
                     }).catch(err=>{

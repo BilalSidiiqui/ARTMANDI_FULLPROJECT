@@ -40,8 +40,11 @@ fetch("http://127.0.0.1:8000/Listing/").then((response)=>{
 
   render() {
     return (
+      <div className="App" style={{backgroundColor:"#D3D3D3"}}>
         <div className="container">
-        <div className="row"style={{margin:30}}>
+        <text style={{marginBottom:30, fontSize:50, fontWeight:'bolder'}}> WATCHLIST PRODUCTS</text>
+
+        <div className="row"style={{marginBottom:30}}>
         
         {
         this.state.Filterproducts ?
@@ -67,6 +70,9 @@ fetch("http://127.0.0.1:8000/Listing/").then((response)=>{
 
 }
 </div>
+
+</div>
+
 <Footer/>
 </div>
 

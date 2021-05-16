@@ -14,6 +14,10 @@ import TRUSTSAFETY from './components/trustsafety';
 import CUSTOMERSUPPORT from './components/customersupport';
 import WATCHLIST from './components/watchlist';
 import TIMER from './components/Timer';
+import CONTACTUS from './components/ContactUs';
+import SOLDPRODUCTS from './components/SoldProducts';
+import AFTERSOLD from './components/Aftersold';
+
 import { BrowserRouter as Router, Switch, Route,Link } from "react-router-dom";
 
 
@@ -45,6 +49,9 @@ function App() {
           <Route path="/PRODUCT/:id" exact>
             <PRODUCT/>
           </Route>
+          <Route path="/AFTERSOLD/:id" exact>
+            <AFTERSOLD/>
+          </Route>
           <Route path="/CAREER" exact>
             <CAREER/>
           </Route>
@@ -65,6 +72,12 @@ function App() {
           </Route>
           <Route path="/TIMER" exact>
             <TIMER/>
+          </Route>
+          <Route path="/CONTACTUS" exact>
+            <CONTACTUS/>
+          </Route>
+          <Route path="/SOLDPRODUCTS" exact>
+            <SOLDPRODUCTS/>
           </Route>
         </Switch> 
 

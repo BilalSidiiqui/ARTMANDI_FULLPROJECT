@@ -15,6 +15,8 @@ import userServices from "../Services/UserServices";
       <Link className="nav-link" to={"/"}>HOME</Link> 
      <Link className="nav-link" to={"/Seller"}>BECOME A SELLER</Link> 
      <Link className="nav-link" to={"/watchlist"}>WATCHLIST</Link> 
+     <Link className="nav-link" to={"/SoldProducts"}>SOLD </Link> 
+     <Link className="nav-link" to={"/ContactUs"}>CONTACT US</Link> 
      
     </Nav>
     <Nav>
