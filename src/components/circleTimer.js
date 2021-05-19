@@ -23,7 +23,6 @@ const renderTime = (dimension, time) => {
     </div>
   );
 };
-
 const getTimeSeconds = (time) => (minuteSeconds - time) | 0;
 const getTimeMinutes = (time) => ((time % hourSeconds) / minuteSeconds) | 0;
 const getTimeHours = (time) => ((time % daySeconds) / hourSeconds) | 0;

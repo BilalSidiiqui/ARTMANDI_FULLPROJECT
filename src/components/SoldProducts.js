@@ -19,7 +19,7 @@ function SoldProducts() {
       }, [])
 
      
-      let array=soldproduct.filter(e => e.completed===true)
+      let array=soldproduct.filter(e => e.completed===true && e.winner_username===localStorage.getItem('username'))
 console.log(array);
 
 

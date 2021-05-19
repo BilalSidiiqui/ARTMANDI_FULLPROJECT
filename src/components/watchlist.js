@@ -26,8 +26,9 @@ Loginid=localStorage.getItem("user_id");
 fetch("http://127.0.0.1:8000/Listing/").then((response)=>{
   response.json().then((listing)=>{
     let array2= listing.filter( e => array.includes(e.id))
-    this.setState({Filterproducts:array2})
-    console.log(array2)
+    let array3=array2.filter(e => e.completed===false)
+    this.setState({Filterproducts:array3})
+    console.log(array3)
   })
 })    
 }

@@ -40,14 +40,21 @@ fetch('http://127.0.0.1:8000/Listing/').then((resp)=> {
     console.log(this.state.products)
     return (
 
-        <div className="App"  style={{backgroundColor:"#D3D3D3", paddingTop:50}}>
+        <div className="App"  style={{backgroundColor:"#F8F8F8", paddingTop:50}}>
    <div className="container"  >
       
               <div className='row' >
-             <h1 style={{textAlign:'center',marginLeft:320, marginRight:80, color:'	#696969'}}>PRODUCTS</h1>
+             <h1 style={{textAlign:'center',marginLeft:345, color:'	#000'}}>ARTWORKS OVERVIEW</h1>
+             <hr  style={{
+    color: '#7a7d85',
+    height: 0.5,
+    borderColor : '#000',
+    width:'34%',
+    marginRight:390
+}}/>
+
+<p style={{marginLeft:180}}>There are multiples Artworks you can find and also you can choose to select by checking there Images and Prices.</p>
        <Form inline >
-      <FormControl type="text" placeholder="Search Products" className="mr-sm-2"  />
-      <Button variant="outline-info">Search </Button>
       <br/>
       <br/><br/>    </Form>
        </div>
@@ -60,8 +67,8 @@ fetch('http://127.0.0.1:8000/Listing/').then((resp)=> {
 this.state.products ?
 this.state.products.slice(0,this.state.visible).map((item)=>
 
- <div className="col-sm-4">
- <Card style={{ width:320, margin:10, backgroundColor:'grey',borderRadius:22}}>
+ <div style={{marginBottom:30}} className="col-sm-4">
+ <Card style={{ width:320, margin:10}}>
  <Link to={`/PRODUCT/${item.id}`}> <Card.Img variant="top" src={item.image} style={{height:200}} /></Link>
   <Card.Body>
   <Card.Title > Title : {item.title}</Card.Title>
@@ -84,7 +91,7 @@ this.state.products.slice(0,this.state.visible).map((item)=>
 
 <div className='col-md-12'>
   {this.state.visible < this.state.products.length &&
-  <button type="button"  className="btn btn-sm btn-primary" onClick={this.loadmore}>SHOW MORE</button>
+  <button  style={{marginBottom:50}} type="button"  className="btn btn-sm btn-primary" onClick={this.loadmore}>SHOW MORE</button>
   }
 </div>
 

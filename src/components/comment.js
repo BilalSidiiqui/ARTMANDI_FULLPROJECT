@@ -33,7 +33,7 @@ this.state.comment.map((item)=>
 <div className='container' style={{backgroundColor:'#fff'}}>
   <div className='row'>
 <div>
-<text style={{paddingLeft:20, marginRight:40,fontWeight:'bold'}}>user: {item.username}</text>
+<text style={{paddingLeft:20, marginRight:40,fontWeight:'bold'}}>{item.username}...</text>
 </div>
 <div>
 <text>{item.comment}</text>

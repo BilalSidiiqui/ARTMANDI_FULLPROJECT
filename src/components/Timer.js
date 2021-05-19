@@ -42,7 +42,8 @@ const Starttimer=()=>{
       clearInterval(interval.current);
       var listing = id
       userServices.closeBid(listing).then((data)=>{
-          window.location.href="/BUYER"})
+          window.location.href="/SOLD"
+        })
     }
     else
     {
@@ -71,24 +72,29 @@ clearInterval(interval.current)
       <div className='row' style={{fontSize:20,fontWeight:'bold',marginLeft:10}}>
       <text style={{fontSize:20,fontWeight:'bold',marginTop:15,marginRight:14}}>TIME LEFT: </text>
 
-      <div style={{marginRight:10}}>
+      <div style={{marginRight:20}}>
 
-   <text >{timerdays}</text>  
-          <br/>
+{timerdays>0 &&   <text >{timerdays}</text>  
+}          <br/>
       <text>days</text>
       </div>
-      <div style={{marginRight:10}}>
-        <text>{timerhours}</text>
+      <div style={{marginTop:13,marginRight:10}}>:</div>
+      <div style={{marginRight:17}}>
+       {timerhours>0 && <text>{timerhours}</text>}
         <br/>
         <text>hours</text>
       </div>
-      <div style={{marginRight:10}}>
-        <text>{timerminutes}</text>
-        <br/>
+      <div style={{marginTop:13,marginRight:10}}>:</div>
+
+      <div style={{marginRight:17}}>
+{timerminutes>0 &&        <text>{timerminutes}</text>
+}        <br/>
         <text>minutes</text>
       </div>
-      <div style={{marginRight:10}}>
-        <text>{timerseconds}</text>
+      <div style={{marginTop:13,marginRight:10}}>:</div>
+
+      <div style={{marginRight:17}}>
+{timerseconds>0 &&<text>{timerseconds}</text>}
         <br/>
         <text>seconds</text>
       </div>

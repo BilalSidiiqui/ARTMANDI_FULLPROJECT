@@ -1,7 +1,7 @@
 import React , {useState,useEffect,useRef} from 'react';
-
 import axios from 'axios';
 import { useParams } from 'react-router';
+import userServices from '../Services/UserServices'
 
 function Timer() {
 
@@ -15,12 +15,8 @@ const url=`http://127.0.0.1:8000/Listing/${id}/`;
 
 const [product,setproduct] =useState('00');
 
-
-
-
-
-
 let interval=useRef();
+
 useEffect(()=>{
   axios.get(url)
   .then(response => {
@@ -32,7 +28,6 @@ const Starttimer=()=>{
  
 
   const endtime = new Date(product.end_date). getTime();
-  console.log(endtime)
 
   interval= setInterval(() => {
     const now= new Date(). getTime();
@@ -45,11 +40,13 @@ const Starttimer=()=>{
 
     if(distance < 0){
       clearInterval(interval.current);
-      alert("api call for close bid");
+      var listing = id
+      userServices.closeBid(listing).then((data)=>{
+          window.location.href="/SOLD"
+        })
     }
     else
     {
-
       settimerdays(days);
       settimerhours(hours);
       settimerminutes(minutes);
@@ -71,11 +68,15 @@ clearInterval(interval.current)
 
   return (
     <div className="container">
-      <div className='row' style={{fontSize:20,fontWeight:'bold',marginLeft:80}}>
+
+      <div className='row' style={{fontSize:20,fontWeight:'bold',marginLeft:10}}>
+      <text style={{fontSize:20,fontWeight:'bold',marginTop:15,marginRight:14}}>TIME LEFT: </text>
+
       <div style={{marginRight:10}}>
-        <text >{timerdays}</text>
-        <br/>
-        <text>days</text>
+
+   <text >{timerdays}</text>  
+          <br/>
+      <text>days</text>
       </div>
       <div style={{marginRight:10}}>
         <text>{timerhours}</text>

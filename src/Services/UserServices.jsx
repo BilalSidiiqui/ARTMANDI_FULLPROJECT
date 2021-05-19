@@ -47,14 +47,17 @@ class UserServices extends GenericServices {
     comment,
     listing
   });
+
+  paymentgateway= (email ,payment_method_id )=>this.post("/save-stripe-info/",{
+    email ,  
+  payment_method_id 
+  }).then((resp)=>{
+localStorage.setItem("message",resp.message);
+localStorage.setItem("data",resp.data);
+  });
   
-  closeBid = (listing)=>this.post("/closebid/",{listing}).then((getinfo)=>{
-    localStorage.setItem("bid",getinfo.bid)
-    localStorage.setItem("user",getinfo.user);
-  })
-  
-  
-  ;
+  closeBid = (listing)=>this.post("/closebid/",{
+    listing}) ;
 
 
   addBid = (user,bid_price,listing)=>this.post("/Bid/?format=api",{

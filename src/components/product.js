@@ -7,12 +7,24 @@ import userServices from "../Services/UserServices";
 import Comment from './comment';
 import Bids from './bids';
 import Timer from './Timer';
+import Table from 'react-bootstrap/Table'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
  function Product() {
 
 const [bid_price,setbid]=React.useState();
 const [comment,setcomment]=React.useState();
 
+
+const BidError= ()=>{
+  toast.error("Bid price cannot be greater than 10000",{
+  position:"top-center"})
+}
+const CommentError= ()=>{
+  toast.error("You cannot add Special characters in comments!",{
+  position:"top-center"})
+}
 
 var {id} = useParams()  
 const url=`http://127.0.0.1:8000/Listing/${id}/`;
@@ -29,61 +41,82 @@ useEffect(()=>{
 
 if(product){
   content=
-  <div className="relative pb-10 min-h-screen">
-  <div class="card" style={{height:300,width:500,margin:30, marginBottom:600,marginLeft:300}}>
-<img src={product.image} class="card-img-top" style={{height:300}} />
-  <div class="card-body">
-  <h5 class="card-title">TITLE: {product.title}</h5>
-  <p class="card-text">DESCRIPTION: {product.description}</p>
-  <h6>PRICE: ${product.start_price}</h6>
-  <h6>BID CLOSED AT: {product.end_date}</h6>
+<div style={{backgroundColor:'#F8F8F8'}}>
+
+<h5 style={{fontSize:40,paddingTop:50}}>Title: {product.title}</h5>
+<div className='row' style={{backgroundColor:'#F8F8F8'}}>
   
+<img src={product.image} style={{height:400,width:400,marginLeft:300,marginTop:150}} />
+  
+  <div style={{marginLeft:100,marginTop:50}} className='col-4'> 
+  <text style={{marginRight:400}}>Product Info</text>
+  <Table striped bordered hover>
+  <thead>
+    <tr>
+     
+      <th>Created By</th>
+      <th>Price</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style={{width:120}}>{product.created_by}</td>
+      <td style={{width:80}}>${product.start_price}</td>
+
+      <td>{product.description}</td>
+    </tr>
+    </tbody>
+     </Table>
   <Timer id={id}/>
-
+  
   <div className="form-group">
-
+{/* 
 <button type="submit" className="btn btn-primary btn-block"  onClick={e=>{
+                
                     var listing = id
                     userServices.closeBid(listing).then((data)=>{
-                        window.location.href="/BUYER"
-                        console.log(listing)
-                        alert(localStorage.getItem("user"));
-                        alert(localStorage.getItem("bid"))
-
+                        window.location.href="/"
+                        alert("Bid has been closed");
                     }).catch(err=>{
                         console.log(err)
                     alert("closing failed")
                     })
                    
-                }}>Close Bid</button>
+                }}>Close Bid</button> */}
  
  
-              <form>
-               <input type="number" className="form-control" style={{width:460,marginBottom:15,marginTop:30}} placeholder="PLACE BID" 
-               value={bid_price} onChange={e=>{
-                        setbid(e.target.value)
-                    }}
-                    />
-                    <button  type="submit" className="btn btn-primary btn-block"  onClick={e=>{
+            {localStorage.getItem("user_id")!=product.created_by &&   <form>
+              <input type="number" className="form-control" style={{width:505,marginBottom:15,marginTop:30}} placeholder="PLACE BID" 
+              value={bid_price} onChange={e=>{
+                      setbid(e.target.value)
+                  }}
+                  />
+                  <button  type="submit" className="btn btn-primary btn-block"  onClick={e=>{
+                    if(bid_price>10000){
+                      alert("Bid price should not be greater than 10000")
+                    }
+                 
+                  else if(bid_price>product.start_price ){
                     var user = localStorage.getItem("user_id")
                     var listing = id
-                    if (bid_price>product.start_price){
-                    userServices.addBid(user,bid_price,listing).then((data)=>{
-                      console.log(bid_price)
-
-                        window.location.href="/BUYER"
-                    })
-                  .catch(err=>{
-                        console.log(err)
-                    alert("adding failed")
-                    } )
-                  }
-                  else{
-                    alert("Bid must be greater than the current price of Product ")
-                  }
-                   
-                }}>Bid Now!</button>
-                </form>
+                  userServices.addBid(user,bid_price,listing).then((data)=>{
+                    console.log(bid_price)
+                    
+                  })
+                .catch(err=>{
+                      console.log(err)
+                  alert("adding failed")
+                  } )
+                }
+                else{
+                  alert("Bid must be greater than the Starting price of Product ")
+                }
+                  
+              }}>Bid Now!</button>
+              
+              </form>}
 
                     
                       </div>
@@ -100,38 +133,42 @@ if(product){
                     }}></textarea>
             </div>
                      <button  type="submit" className="btn btn-primary btn-block"  onClick={e=>{
+                       if(!comment.includes("@")){
                     var user = localStorage.getItem("user_id")
                     var listing = id
                     userServices.addComment(user,comment,listing).then((data)=>{
                         console.log(comment)
-                        window.location.href="/BUYER"
+                        window.location.href="/"
                     }).catch(err=>{
                         console.log(err)
                     alert("adding failed")
                     })
                    
-                }}>SEND</button>
+               }
+                else{
+                  toast.error("Special charaters cannot be included")
+                } }}
+                >SEND</button>
                 <br/>
+                <ToastContainer />
+
                  </form>
               <Comment id={id} />
-            </div>
-           
             
+              </div>
   </div>
-  </div>
-  
+            </div>
   
 }
   return (
-    <div className="App"  style={{backgroundColor:"#D3D3D3",paddingTop:50}}>
-       <div className="container"  style={{marginBottom:600}}>
+    <div className="App"  style={{backgroundColor:"#F8F8F8"}}>
+      
      {content}
      
      <br/><br/><br/><br/><br/><br/>
      <br/><br/><br/><br/><br/><br/>
      
      
-     </div>
      <FOOTER />
   </div>
   )
