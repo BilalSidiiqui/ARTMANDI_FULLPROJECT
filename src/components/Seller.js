@@ -11,16 +11,12 @@ function Seller() {
 
     const [title,settitle]=React.useState();
     const [description,setdescription]=React.useState();
-   const[image,setimage]=React.useState(null);
+   const[image,setimage]=React.useState();
    const [category,setcategory]=useState("T");
   const[startPrice,setstartPrice]=React.useState();
   const [end_date, setend_date] = useState(new Date());
   
-
-// const fileselectorhandler=event=>{
-//     setimage(event.target.files[0])
-
-// }
+console.log(end_date)
 
     return (
         <div className="App" style={{backgroundColor:"#fff"}}>
@@ -82,11 +78,10 @@ width:'78%',
 
 
 
-         <input style={{marginLeft:90,color:'blue'}} type="file" placeholder="Upload Image" onChange={e=>{
-             setimage(e.target.files[0])
-         }}
-         />
-             <br/> <br/>
+         
+            <input type="url" id="productimg" className="form-control" placeholder="ENTER IMAGE URL" name="img" style={{border:0}} value={image} onChange={e=>{
+                        setimage(e.target.value)
+                    }}/> <br/> <br/>
 
             <Calendar
                     selected={end_date}               
@@ -96,33 +91,17 @@ width:'78%',
                 />    
 
             <button style={{marginTop:30}} type="submit" className="btn btn-primary btn-block" onClick={e=>{
-                try{
                     var created_by = localStorage.getItem("user_id")
                     var start_price= parseInt(startPrice)
-                    const data= new FormData();
-                    data.append('title',title);
-                    data.append('description',description);
-                    data.append('image',image);
-                    data.append('category',category);
-                    data.append('start_price',start_price);
-                    data.append('created_by',created_by);
-                    data.append('end_date',end_date);
-                    
-                    userServices.addProduct(data).then((data)=>{
-                        console.log("data")
+                    userServices.addProduct(title,description,image,category,start_price,created_by,end_date).then((data)=>{
+                        console.log(data)
+                        alert("product has been added successfully!")
                         window.location.href="/BUYER"
-                        e.preventDefault()
-
                     }).catch(err=>{
                         console.log(err)
-                        e.preventDefault()
-
-                    alert("ADDING FAILED!")
-                    // window.location.href='/login'
-                    })}catch(error){
-                        console.log(error)
-                        e.preventDefault()
-                    }
+                    alert("Login First!")
+                    window.location.href='/login'
+                    })
                    
                 }}>ADD PRODUCT</button>
            

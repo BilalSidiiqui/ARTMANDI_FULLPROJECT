@@ -31,10 +31,16 @@ class UserServices extends GenericServices {
     localStorage.removeItem("user_id", "");
   };
 
-  addProduct = (data) =>
-    this.post("/Listing/?format=api", 
-    data
-    );
+  addProduct = (title, description, image, category, start_price,created_by,end_date) =>
+    this.post("/Listing/?format=api", {
+      title,
+      description,
+      image,
+      category,
+      start_price,
+      created_by,
+      end_date,
+    });
 
   addComment = (user,comment,listing)=>this.post("/Comment/?format=api",{
     user,
