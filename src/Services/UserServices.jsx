@@ -10,14 +10,14 @@ class UserServices extends GenericServices {
   }
 
   login = (username, password) =>
-    new Promise((resolve, reject) => {
+    // new Promise((resolve, reject) => 
       this.post("/login/", { username, password }).then((person) => {
         localStorage.setItem("user_id", person.user_id);
         localStorage.setItem("username",person.username);
-        resolve(person);
+        return(person);
         
-      });
-    });
+      })
+// );
 
   register = (username, email, password, confirmPassword) =>
   new Promise((resolve, reject) => {
@@ -31,16 +31,10 @@ class UserServices extends GenericServices {
     localStorage.removeItem("user_id", "");
   };
 
-  addProduct = (title, description, image, category, start_price,created_by,end_date) =>
-    this.post("/Listing/?format=api", {
-      title,
-      description,
-      image,
-      category,
-      start_price,
-      created_by,
-      end_date,
-    });
+  addProduct = (data) =>
+    this.post("/Listing/?format=api", 
+    data
+    );
 
   addComment = (user,comment,listing)=>this.post("/Comment/?format=api",{
     user,
@@ -64,8 +58,17 @@ localStorage.setItem("data",resp.data);
     user,
     bid_price,
     listing
-  });
+  }).then((res)=>{
+return(res.data);
+  })
+  ;
   
+  verifyaccount= (uid,token)=>this.post("/activate/",{
+uid,
+token
+
+  })
+
 
   isLoggedIn = () => {
     console.log(localStorage.getItem("user_id"));

@@ -33,7 +33,7 @@ if(Aftersold){
   
 <div style={{backgroundColor:'#F8F8F8'}}>
 
-<h5 style={{fontSize:40,paddingTop:50}}>Title: {Aftersold.title}</h5>
+<h5 style={{fontSize:40,paddingTop:50}}> {Aftersold.title}</h5>
 <div className='row' style={{backgroundColor:'#F8F8F8'}}>
   
 <img src={Aftersold.image} style={{height:400,width:400,marginLeft:300,marginTop:150}} />

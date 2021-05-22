@@ -6,9 +6,17 @@ import './comments.css'
     super(props);
   
     this.state = {       
-      comment:null,
+      comment:[],
+       visible:2, }
+      
+      this.loadmore= this.loadmore.bind(this);
      
-     }
+   
+  }
+  loadmore(){
+    this.setState((previous)=>{
+      return {visible: previous.visible + 2}
+    })
   }
 
 componentDidMount(){
@@ -29,7 +37,7 @@ fetch(`http://127.0.0.1:8000/Comment/?listing=${this.props.id}`).then((resp)=> {
             
 {
 this.state.comment ?
-this.state.comment.map((item)=>
+this.state.comment.slice(0,this.state.visible).map((item)=>
 <div className='container' style={{backgroundColor:'#fff'}}>
   <div className='row'>
 <div>
@@ -44,6 +52,7 @@ this.state.comment.map((item)=>
     width:'100%'
 }}/>
 </div>
+
 </div>
  
   )
@@ -51,6 +60,11 @@ this.state.comment.map((item)=>
    <h1>api data no found</h1>
    
    }
+   <div className='col-md-12'>
+  {this.state.visible < this.state.comment.length &&
+  <button  style={{marginBottom:50}} type="button"  className="btn btn-sm btn-primary" style={{marginLeft:350,marginTop:20}} onClick={this.loadmore}>SHOW MORE</button>
+  }
+</div>
    </div>
         )
     }

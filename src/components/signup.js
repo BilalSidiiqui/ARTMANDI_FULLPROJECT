@@ -35,6 +35,12 @@ import 'react-toastify/dist/ReactToastify.css';
             position:"top-center"
             }
                 );}
+    
+    const EmailotherError = () => {
+        toast.error("Email should not contain special symbol except @",{
+            position:"top-center"
+            }
+                );}
 
      const PasswordLengthError = ()=>{
          toast.error("Password should be more than 6 digits",{
@@ -96,11 +102,15 @@ style={{height:170,  width:250}}/>
                     if(username.length<=2){
                         {UserLengthError()}
                     }
-                   else if(username.includes("@")){
+                   else if(username.includes("@") || username.includes("!")|| username.includes("#")|| username.includes("$")|| username.includes("%")|| username.includes("^")|| username.includes("&")|| username.includes("*")|| username.includes("(")|| username.includes(")")){
                         {UserError()}
                     }
                    else if(!email.includes("@")){
                         {EmailError()}
+                    }
+                    else if( email.includes("!")|| email.includes("#")|| email.includes("$")|| email.includes("%")|| email.includes("^")|| email.includes("&")|| email.includes("*")|| email.includes("(")|| email.includes(")"))
+                    {
+                        {EmailotherError()}
                     }
                   else if(email.length<=5){
                         {EmailLengthError()}
@@ -114,20 +124,12 @@ style={{height:170,  width:250}}/>
                     }
                     else{
                     userServices.register(username, email, password, confirmPassword).then((data)=>{
-                        
-                        if(data.message==="User saved Successfully"){
-                            toast.success(data.message,{
+                      toast.success(data.message,{
                                 position:"top-center"
                                 })
                         console.log(data)
-                    window.location='/login'
-                }
-                else{
-                
-                        toast.error(data.message,{
-                            position:"top-center"
-                            })
-                }
+                    window.location='/verify'
+              
                     }).catch(err=>{
                     alert(err.message)
                         console.log(err)

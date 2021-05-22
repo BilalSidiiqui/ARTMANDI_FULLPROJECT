@@ -17,8 +17,13 @@ import TIMER from './components/Timer';
 import CONTACTUS from './components/ContactUs';
 import SOLDPRODUCTS from './components/SoldProducts';
 import AFTERSOLD from './components/Aftersold';
+import VERIFY from './components/verify'
+import NOTFOUND from './components/notfound';
+import ABSTRACT from './components/Abstract'
+import LANDSCAPE from './components/landscape';
+import SURREALISM from './components/Surrealism';
 
-import { BrowserRouter as Router, Switch, Route,Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route,Link, Redirect } from "react-router-dom";
 
 
 
@@ -78,8 +83,24 @@ function App() {
           </Route>
           <Route path="/SOLDPRODUCTS" exact>
             <SOLDPRODUCTS/>
+          </Route> 
+          <Route path="/VERIFY" exact>
+            <VERIFY/>
           </Route>
-        </Switch> 
+          <Route path="/ABSTRACT" exact>
+            <ABSTRACT/>
+          </Route>
+          <Route path="/LANDSCAPE" exact>
+            <LANDSCAPE/>
+          </Route> <Route path="/SURREALISM" exact>
+            <SURREALISM/>
+          </Route>
+          <Route path="/NOTFOUND" exact>
+          <NOTFOUND/>
+          </Route>
+          <Redirect to="/NOTFOUND"
+          />
+                </Switch> 
 
          
         

@@ -2,6 +2,7 @@ import { Form,FormControl,Button,Card,} from 'react-bootstrap';
 import React  from 'react'
 import { Link } from 'react-router-dom';
 import Footer from './footer'
+import {Carousel} from 'react-bootstrap';
 
 class watchlist extends React.Component {
 
@@ -41,19 +42,104 @@ fetch("http://127.0.0.1:8000/Listing/").then((response)=>{
 
   render() {
     return (
-      <div className="App" style={{backgroundColor:"#D3D3D3"}}>
-        <div className="container">
-        <text style={{marginBottom:30, fontSize:50, fontWeight:'bolder'}}> WATCHLIST PRODUCTS</text>
+      <div className="App" style={{backgroundColor:"#fff",maxWidth:'100%' , overflowX:'hidden'}}>
+       
+      <div style={{marginTop:50,marginBottom:70}}>
+  <div className="row">
 
-        <div className="row"style={{marginBottom:30}}>
-        
+    <div style={{width:550}} >
+      <div className="mu-hero-left">
+      <text style={{fontStyle:'italic'}}>Please read this Customer Support carefully to understand how users can ask their quries. Our cutomer support team is available 24/7. Send your query emails at the email account provided below.</text>
+      
+      </div>
+    </div>
+    <div style={{marginLeft:45,width:960}}>
+      <div className="mu-hero-right">
+     <Carousel>
+ <Carousel.Item>
+   <img
+     className="d-block w-100"
+     src="https://www.wallpaperup.com/uploads/wallpapers/2016/05/07/944962/480eda89e37c6900c95883bd34036fb4-700.jpg"
+     alt="First slide"
+     style={{
+      borderBottomLeftRadius:150,
+      borderTopRightRadius:150,
+     
+     }}
+    height="250px"
+    width="3000px"
+   />
+   <Carousel.Caption>
+     <h3 >CREATIVTY IS A WILD MIND AND A DISCIPLINED EYE.</h3>
+      <text style={{fontStyle:'italic'}}>Dorothy Parker</text> 
+   </Carousel.Caption>
+ </Carousel.Item>
+ <Carousel.Item>
+   <img
+     className="d-block w-100"
+     src="http://residencestyle.com/wp-content/uploads/2020/11/abstract-painting.jpg"
+     alt="second slide"
+     style={{
+      borderBottomLeftRadius:150,
+          borderTopRightRadius:150,
+     
+    }}
+     height="250px"
+     width="3000px"
+   />
+
+   <Carousel.Caption>
+     <h3>A PICTURE IS A POEM WITHOUT WORDS.</h3>
+     <text style={{fontStyle:'italic'}}>Horace</text>
+   </Carousel.Caption>
+ </Carousel.Item>
+ <Carousel.Item>
+   <img
+     className="d-block w-100"
+     src="https://wallpapercave.com/wp/wp6992273.jpg"
+     alt="Third slide"
+     style={{
+      borderBottomLeftRadius:150,
+      borderTopRightRadius:150,
+    }}
+     height="250px"
+     width="3000px"
+   />
+
+   <Carousel.Caption>
+     <h3>ART IS NEVER FINISHED, ONLY ABANDONED</h3>
+     <text style={{fontStyle:'italic'}}>Leonardo da Vinci</text>
+   </Carousel.Caption>
+ </Carousel.Item>
+</Carousel>
+
+     </div>
+    </div>	
+
+  </div>
+</div>
+<div className="App"  style={{backgroundColor:"#F8F8F8", paddingTop:50}}>
+   <div className="container"  >
+      
+              <div className='row' >
+             <h1 style={{textAlign:'center',marginLeft:360, color:'	#000'}}>WATCHLIST ARTWORKS</h1>
+             <hr  style={{
+    color: '#7a7d85',
+    height: 0.5,
+    borderColor : '#000',
+    width:'28%',
+    marginRight:410
+}}/>
+
+<p style={{marginLeft:180}}>You can check the product on which you have placed bid. Also you can place new bid if someone place greater bid than yours.</p>
+    
         {
         this.state.Filterproducts ?
         this.state.Filterproducts.map((item)=>
         
-         <div className="col-sm-4">
-         <Card style={{ width:320, margin:10, backgroundColor:'grey',borderRadius:22}}>
-         <Link to={`/PRODUCT/${item.id}`}> 
+        <div style={{marginBottom:30}} className="col-sm-4">
+        <Card style={{ width:320, margin:10}}> 
+        <Link to={`/PRODUCT/${item.id}`}> 
         <Card.Img variant="top" src={item.image} style={{height:200}} /></Link>
           <Card.Body>
           <Card.Title > Title : {item.title}</Card.Title>
@@ -76,7 +162,7 @@ fetch("http://127.0.0.1:8000/Listing/").then((response)=>{
 
 <Footer/>
 </div>
-
+</div>
     )};
 }
 export default watchlist;

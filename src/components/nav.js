@@ -1,14 +1,20 @@
 import React from 'react'
 import {Nav,Navbar,NavDropdown,Button} from 'react-bootstrap'
 import { BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
+import { GiPaintRoller } from "react-icons/gi";
+
 
 import userServices from "../Services/UserServices";
+import { IconContext } from 'react-icons/lib';
 
   const nav = () => {
     return (
         <div>
             <Navbar style={{height:80}} collapseOnSelect expand="lg" bg="white" variant="dark">
-  <Navbar.Brand style={{marginLeft:60, color:'Black',fontSize:30,fontWeight:"bold"}}>ARTMANDI</Navbar.Brand>
+  <Navbar.Brand style={{marginLeft:60, color:'Black',fontSize:30,fontWeight:"bold",marginRight:5}}>ARTMANDI
+  <IconContext.Provider  value={{color:'black',size:'1.8em'}}>
+  <GiPaintRoller/></IconContext.Provider>
+  </Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav style={{marginLeft:70}} className="mr-auto">

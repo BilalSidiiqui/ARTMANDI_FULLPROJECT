@@ -17,7 +17,7 @@ import './OpStyle.css'
            <p className='text'>Sellers are users who offer and make atrwork and sell on Fiverr.</p> 
            <p className='text' style={{fontWeight:'bold'}}>Bidding</p>
            <p className='text'> A certain time for bidding will provided and after that the bidding stops and highest bids wins.</p>
-           <p className='text' style={{fontWeight:'bold'}}>Paymen`t</p>
+           <p className='text' style={{fontWeight:'bold'}}>Payment</p>
            <p className='text'>At Initial stages, Cash of Delivery is a payment method, but after Final development stage, users can buy thorugh bank cards. </p>
            
         </div> 

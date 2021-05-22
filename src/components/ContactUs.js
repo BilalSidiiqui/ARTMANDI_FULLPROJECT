@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import Footer from './footer'
+import FOOTER from './footer'
+
  class ContactUs extends Component {
     render() {
         return (
-            <div className='App' style={{backgroundColor:"#D3D3D3"}}>
+            <div className='App' style={{backgroundColor:"#fff"}}>
             <div className="Main">
         <div className='Outer' style={{backgroundImage: `url("https://i1.pickpik.com/photos/561/876/856/various-art-brush-paint-preview.jpg")` }}>
         <div className='inner-container'>
@@ -42,7 +43,7 @@ import Footer from './footer'
         </div>
         <br/><br/><br/><br/><br/><br/><br/>
         </div>
-          
+          <FOOTER/>
         </div>
         )
     }

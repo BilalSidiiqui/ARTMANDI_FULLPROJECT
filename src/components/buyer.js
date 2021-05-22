@@ -40,7 +40,7 @@ fetch('http://127.0.0.1:8000/Listing/').then((resp)=> {
     console.log(this.state.products)
     return (
 
-        <div className="App"  style={{backgroundColor:"#F8F8F8", paddingTop:50}}>
+        <div className="App"  style={{backgroundColor:"#F8F8F8", paddingTop:100}}>
    <div className="container"  >
       
               <div className='row' >
@@ -53,14 +53,14 @@ fetch('http://127.0.0.1:8000/Listing/').then((resp)=> {
     marginRight:390
 }}/>
 
-<p style={{marginLeft:180}}>There are multiples Artworks you can find and also you can choose to select by checking there Images and Prices.</p>
+<p style={{fontSize:20,fontWeight:50,marginBottom:70,marginLeft:100}}>There are multiples Artworks you can find and also you can choose to select by checking there Images and Prices.</p>
        <Form inline >
       <br/>
       <br/><br/>    </Form>
        </div>
       
 
-       <div className="container">
+       <div className="container" style={{paddingBottom:50,marginBottom:80}}>
 <div className="row"style={{margin:30}}>
 
 {

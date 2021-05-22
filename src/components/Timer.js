@@ -74,27 +74,27 @@ clearInterval(interval.current)
 
       <div style={{marginRight:20}}>
 
-{timerdays>0 &&   <text >{timerdays}</text>  
+{timerdays>=0 &&   <text >{timerdays}</text>  
 }          <br/>
       <text>days</text>
       </div>
       <div style={{marginTop:13,marginRight:10}}>:</div>
       <div style={{marginRight:17}}>
-       {timerhours>0 && <text>{timerhours}</text>}
+       {timerhours>=0 && <text>{timerhours}</text>}
         <br/>
         <text>hours</text>
       </div>
       <div style={{marginTop:13,marginRight:10}}>:</div>
 
       <div style={{marginRight:17}}>
-{timerminutes>0 &&        <text>{timerminutes}</text>
+{timerminutes>=0 &&        <text>{timerminutes}</text>
 }        <br/>
         <text>minutes</text>
       </div>
       <div style={{marginTop:13,marginRight:10}}>:</div>
 
       <div style={{marginRight:17}}>
-{timerseconds>0 &&<text>{timerseconds}</text>}
+{timerseconds>=0 &&<text>{timerseconds}</text>}
         <br/>
         <text>seconds</text>
       </div>
@@ -103,4 +103,3 @@ clearInterval(interval.current)
   )
 }
 export default Timer;
-
